@@ -1,4 +1,4 @@
-# SQL
+# SQL - Data Analysis
 # Pizza Sales Analysis Project
 
 ## Overview
@@ -13,7 +13,7 @@ The dataset used in this project is a fictional pizza sales dataset. It comprise
 
 ## Features
 * Comprehensive SQL queries for data aggregation and analysis.
-* Insights into daily revenue trends, top-selling pizzas, and cumulative sales.
+* Insights into daily revenue trends, top-selling pizzas, etc.
 * Demonstrates skills in SQL joins, window functions, grouping, and data aggregation.
 
 ## Requirements
