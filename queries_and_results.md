@@ -37,8 +37,8 @@ WHERE
     price = (SELECT MAX(price) FROM pizzas);
 ```
 
-| name         | pizza_id      | pizza_name   | pizza_size | price |
-|--------------|---------------|--------------|------------|-------|
+| name         | pizza_id      | pizza_size | price |
+|--------------|---------------|------------|-------|
 | The Greek Pizza | the_greek_xxl | XXL          | 35.95      |
 
 ## Q4: Identify the Most Common Pizza Size Ordered
