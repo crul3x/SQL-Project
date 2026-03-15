@@ -6,7 +6,7 @@ This project presents an in-depth analysis of a fictional pizza chain's full yea
 
 ---
 
-## Dataset
+## Dataset : [View Raw Dataset](https://docs.google.com/spreadsheets/d/1pBeCfVQ26g18TXGt9rp_pkGZxwcY5xi75eSFGTAGP20/edit?gid=16188448#gid=16188448)
 
 | Property | Detail |
 |---|---|
