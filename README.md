@@ -78,26 +78,6 @@ Used subqueries to calculate each category's percentage contribution to total re
 
 ---
 
-## Files
-
-| File | Description |
-|---|---|
-| `queries_and_results.md` | All 14 SQL queries with result tables |
-| `orders.csv` | Raw orders data (21,350 rows) |
-| `order_details.csv` | Raw order line items (48,620 rows) |
-| `pizzas.csv` | Pizza SKUs, sizes, and prices (96 rows) |
-| `pizza_types.csv` | Pizza names, categories, ingredients (32 rows) |
-
----
-
-## How to Reproduce
-
-1. Set up a MySQL database
-2. Import all 4 CSV files as tables
-3. Run queries from `queries_and_results.md` in order
-
----
-
 ### Conclusion
 
 This project demonstrates SQL-driven analysis across a realistic multi-table dataset. The most actionable insight is the disconnect between order volume and revenue by category - Classic pizzas are ordered most frequently but Chicken pizzas generate disproportionately high revenue per order, which has direct implications for menu pricing and promotional strategy. The strong Friday peak and weak Sunday performance also point to clear opportunities for targeted weekend promotions.
