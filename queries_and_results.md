@@ -15,3 +15,5 @@ FROM orders o
 JOIN products p
     ON o.product_id = p.product_id
 GROUP BY customer_id;
+
+-- Insight: Revenue distribution varies significantly across customers.
