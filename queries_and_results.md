@@ -1,17 +1,18 @@
-/* ===============================================================================
-Customer & Revenue Analysis - SQL Portfolio
-===============================================================================
-Description: 
-This script contains a suite of queries designed to analyze customer spending 
-patterns, revenue distribution, and purchasing behavior.
+I see what happened—the previous response got cut off because it was so long! Here is the **entire project** in one single block of code.
 
-Author: [Your Name]
-Date: 2026
-===============================================================================
-*/
+Copy everything inside the box below and paste it directly into that empty space where it says "Enter file contents here" in your screenshot.
 
--- Q1: Calculate total revenue per customer
--- Insight: Revenue distribution varies significantly across customers.
+```markdown
+# Customer & Revenue Analysis - SQL Portfolio
+
+> **Project Overview:** This analysis explores customer spending patterns, revenue distribution, and purchasing behavior using advanced SQL techniques including Common Table Expressions (CTEs), Window Functions, and Data Segmentation.
+
+---
+
+## SQL Queries & Insights
+
+### Q1: Calculate total revenue per customer
+```sql
 SELECT
     customer_id,
     SUM(o.units * p.unit_price) AS total_revenue
@@ -20,8 +21,11 @@ JOIN products p
     ON o.product_id = p.product_id
 GROUP BY customer_id;
 
--- Q2: Find the top 5 customers by total revenue
--- Insight: A small group of customers contributes a large portion of revenue.
+-- Insight: Revenue distribution varies significantly across customers.
+```
+
+### Q2: Find the top 5 customers by total revenue
+```sql
 SELECT
     customer_id,
     SUM(o.units * p.unit_price) AS total_revenue
@@ -32,8 +36,11 @@ GROUP BY customer_id
 ORDER BY total_revenue DESC
 LIMIT 5;
 
--- Q3: Calculate percentage contribution of each customer to total revenue
--- Insight: Revenue contribution highlights dependency on top customers.
+-- Insight: A small group of customers contributes a large portion of revenue.
+```
+
+### Q3: Calculate percentage contribution of each customer to total revenue
+```sql
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -49,8 +56,11 @@ SELECT
     ROUND(total_revenue * 100.0 / SUM(total_revenue) OVER (), 2) AS contribution_percentage
 FROM customer_revenue;
 
--- Q4: Rank customers based on total revenue (highest first)
--- Insight: Ranking helps prioritize high-value customers.
+-- Insight: Revenue is concentrated among a limited number of customers.
+```
+
+### Q4: Rank customers based on total revenue
+```sql
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -68,8 +78,11 @@ SELECT
     ) AS customer_rank
 FROM customer_revenue;
 
--- Q5: Identify the top 10% highest-spending customers
--- Insight: Top 10% customers form the core revenue-driving segment.
+-- Insight: Ranking helps identify and prioritize high-value customers.
+```
+
+### Q5: Identify the top 10% highest-spending customers
+```sql
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -93,8 +106,11 @@ SELECT
 FROM ranked
 WHERE percentile_bucket <= 10;
 
--- Q6: Find the most expensive order for each customer
--- Insight: Identifies peak spending behavior per customer.
+-- Insight: Top 10% customers form the core revenue-driving segment.
+```
+
+### Q6: Find the most expensive order for each customer
+```sql
 WITH order_values AS (
     SELECT
         customer_id,
@@ -121,8 +137,11 @@ SELECT
 FROM ranked
 WHERE rank_order = 1;
 
--- Q7: Find the second most expensive order for each customer
--- Insight: Shows secondary spending behavior patterns.
+-- Insight: Identifies peak spending behavior per customer.
+```
+
+### Q7: Find the second most expensive order for each customer
+```sql
 WITH order_values AS (
     SELECT
         customer_id,
@@ -149,8 +168,11 @@ SELECT
 FROM ranked
 WHERE rank_order = 2;
 
--- Q8: Find orders above customer’s average order value
--- Insight: Highlights unusually high-value orders.
+-- Insight: Shows consistency and secondary spending patterns.
+```
+
+### Q8: Find orders above customer’s average order value
+```sql
 WITH order_values AS (
     SELECT
         customer_id,
@@ -176,8 +198,11 @@ SELECT
 FROM avg_values
 WHERE total_order_value > avg_order_value;
 
--- Q9: Find the product contributing highest value in each order
--- Insight: Identifies key products driving order value.
+-- Insight: Highlights unusually high-value transactions compared to typical behavior.
+```
+
+### Q9: Find the product contributing highest value in each order
+```sql
 WITH product_values AS (
     SELECT
         order_id,
@@ -204,8 +229,11 @@ SELECT
 FROM ranked
 WHERE rank_product = 1;
 
--- Q10: Calculate running revenue per customer
--- Insight: Tracks cumulative customer spending over time.
+-- Insight: Identifies which products dominate order value.
+```
+
+### Q10: Calculate running revenue per customer
+```sql
 WITH order_values AS (
     SELECT
         customer_id,
@@ -226,8 +254,11 @@ SELECT
     ) AS running_total_revenue
 FROM order_values;
 
--- Q11: Segment customers based on revenue
--- Insight: Enables targeted customer segmentation (High/Medium/Low).
+-- Insight: Tracks how customer revenue accumulates over time.
+```
+
+### Q11: Segment customers based on revenue
+```sql
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -255,8 +286,11 @@ SELECT
     END AS segment
 FROM ranked;
 
--- Q12: Compare each order with previous order
--- Insight: Reveals changes in customer spending behavior over time.
+-- Insight: Enables clear segmentation for targeted marketing or retention strategies.
+```
+
+### Q12: Compare each order with previous order
+```sql
 WITH order_values AS (
     SELECT
         customer_id,
@@ -281,3 +315,7 @@ SELECT
         ORDER BY order_id
     ) AS difference
 FROM order_values;
+
+-- Insight: Reveals changes and volatility in customer spending behavior over time.
+```
+```
