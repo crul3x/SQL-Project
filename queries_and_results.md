@@ -4,14 +4,16 @@
 
 ---
 
-## SQL Queries & Insights
+## Combined SQL Analysis Script
 
 ```sql
 /* ===============================================================================
-1. Calculate total revenue per customer
-Insight: Revenue distribution varies significantly across customers.
+CUSTOMER & REVENUE ANALYSIS SCRIPT
 ===============================================================================
 */
+
+-- Q1: Calculate total revenue per customer
+-- Insight: Revenue distribution varies significantly across customers.
 SELECT
     customer_id,
     SUM(o.units * p.unit_price) AS total_revenue
@@ -21,11 +23,8 @@ JOIN products p
 GROUP BY customer_id;
 
 
-/* ===============================================================================
-2. Find the top 5 customers by total revenue
-Insight: A small group of customers contributes a large portion of revenue.
-===============================================================================
-*/
+-- Q2: Find the top 5 customers by total revenue
+-- Insight: A small group of customers contributes a large portion of revenue.
 SELECT
     customer_id,
     SUM(o.units * p.unit_price) AS total_revenue
@@ -37,11 +36,8 @@ ORDER BY total_revenue DESC
 LIMIT 5;
 
 
-/* ===============================================================================
-3. Calculate percentage contribution of each customer to total revenue
-Insight: Revenue contribution highlights dependency on top customers.
-===============================================================================
-*/
+-- Q3: Calculate percentage contribution of each customer to total revenue
+-- Insight: Revenue contribution highlights dependency on top customers.
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -58,11 +54,8 @@ SELECT
 FROM customer_revenue;
 
 
-/* ===============================================================================
-4. Rank customers based on total revenue (highest first)
-Insight: Ranking helps prioritize high-value customers.
-===============================================================================
-*/
+-- Q4: Rank customers based on total revenue (highest first)
+-- Insight: Ranking helps prioritize high-value customers.
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -81,11 +74,8 @@ SELECT
 FROM customer_revenue;
 
 
-/* ===============================================================================
-5. Identify the top 10% highest-spending customers
-Insight: Top 10% customers form the core revenue-driving segment.
-===============================================================================
-*/
+-- Q5: Identify the top 10% highest-spending customers
+-- Insight: Top 10% customers form the core revenue-driving segment.
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -110,11 +100,8 @@ FROM ranked
 WHERE percentile_bucket <= 10;
 
 
-/* ===============================================================================
-6. Find the most expensive order for each customer
-Insight: Identifies peak spending behavior per customer.
-===============================================================================
-*/
+-- Q6: Find the most expensive order for each customer
+-- Insight: Identifies peak spending behavior per customer.
 WITH order_values AS (
     SELECT
         customer_id,
@@ -142,11 +129,8 @@ FROM ranked
 WHERE rank_order = 1;
 
 
-/* ===============================================================================
-7. Find the second most expensive order for each customer
-Insight: Shows secondary spending behavior patterns.
-===============================================================================
-*/
+-- Q7: Find the second most expensive order for each customer
+-- Insight: Shows secondary spending behavior patterns.
 WITH order_values AS (
     SELECT
         customer_id,
@@ -174,11 +158,8 @@ FROM ranked
 WHERE rank_order = 2;
 
 
-/* ===============================================================================
-8. Find orders above customer’s average order value
-Insight: Highlights unusually high-value orders.
-===============================================================================
-*/
+-- Q8: Find orders above customer’s average order value
+-- Insight: Highlights unusually high-value orders.
 WITH order_values AS (
     SELECT
         customer_id,
@@ -205,11 +186,8 @@ FROM avg_values
 WHERE total_order_value > avg_order_value;
 
 
-/* ===============================================================================
-9. Find the product contributing highest value in each order
-Insight: Identifies key products driving order value.
-===============================================================================
-*/
+-- Q9: Find the product contributing highest value in each order
+-- Insight: Identifies key products driving order value.
 WITH product_values AS (
     SELECT
         order_id,
@@ -237,11 +215,8 @@ FROM ranked
 WHERE rank_product = 1;
 
 
-/* ===============================================================================
-10. Calculate running revenue per customer
-Insight: Tracks cumulative customer spending over time.
-===============================================================================
-*/
+-- Q10: Calculate running revenue per customer
+-- Insight: Tracks cumulative customer spending over time.
 WITH order_values AS (
     SELECT
         customer_id,
@@ -263,11 +238,8 @@ SELECT
 FROM order_values;
 
 
-/* ===============================================================================
-11. Segment customers based on revenue
-Insight: Enables targeted customer segmentation (High/Medium/Low).
-===============================================================================
-*/
+-- Q11: Segment customers based on revenue
+-- Insight: Enables targeted customer segmentation (High/Medium/Low).
 WITH customer_revenue AS (
     SELECT
         customer_id,
@@ -296,11 +268,8 @@ SELECT
 FROM ranked;
 
 
-/* ===============================================================================
-12. Compare each order with previous order
-Insight: Reveals changes in customer spending behavior over time.
-===============================================================================
-*/
+-- Q12: Compare each order with previous order
+-- Insight: Reveals changes in customer spending behavior over time.
 WITH order_values AS (
     SELECT
         customer_id,
