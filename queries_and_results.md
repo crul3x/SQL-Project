@@ -1,8 +1,3 @@
-I see what happened—the previous response got cut off because it was so long! Here is the **entire project** in one single block of code.
-
-Copy everything inside the box below and paste it directly into that empty space where it says "Enter file contents here" in your screenshot.
-
-```markdown
 # Customer & Revenue Analysis - SQL Portfolio
 
 > **Project Overview:** This analysis explores customer spending patterns, revenue distribution, and purchasing behavior using advanced SQL techniques including Common Table Expressions (CTEs), Window Functions, and Data Segmentation.
