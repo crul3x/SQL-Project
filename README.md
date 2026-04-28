@@ -8,7 +8,7 @@ The analysis focuses on identifying high-value customers, understanding order-le
 
 ---
 
-## Dataset
+## Dataset : [View Raw Dataset](https://docs.google.com/spreadsheets/d/1lfsP7dfm60WHy492Xa4O4jFkUtnvULR0ypaYO1w1Y2E/edit?usp=sharing)
 
 | Property | Detail |
 |---|---|
